@@ -5,7 +5,7 @@ use crate::max_encoding_length;
 /// given mutable output slice. This is often useful when heap data
 /// structures are not available, or when not all message bytes are
 /// received at a single point in time.
-#[derive(Debug)]
+#[cfg_attr(any(feature = "debug", test), derive(Debug))]
 pub struct CobsEncoder<'a> {
     dest: &'a mut [u8],
     dest_idx: usize,
@@ -22,7 +22,8 @@ pub struct CobsEncoder<'a> {
 /// **ALREADY** contains a single placeholder byte, and no other bytes.
 /// This placeholder byte will be later modified with the first distance
 /// to the next header/zero byte.
-#[derive(Clone, Debug)]
+#[derive(Clone)]
+#[cfg_attr(any(feature = "debug", test), derive(Debug))]
 pub struct EncoderState {
     code_idx: usize,
     num_bt_sent: u8,

@@ -2,7 +2,7 @@
 /// given mutable output slice. This is often useful when heap data
 /// structures are not available, or when not all message bytes are
 /// received at a single point in time.
-#[derive(Debug)]
+#[cfg_attr(any(feature = "debug", test), derive(Debug))]
 pub struct CobsDecoder<'a> {
     /// Destination slice for decoded message
     dest: &'a mut [u8],
@@ -18,7 +18,7 @@ pub struct CobsDecoder<'a> {
 /// streaming decoder. This struct does not contain the output buffer
 /// (or a reference to one), and can be used when streaming the decoded
 /// output to a custom data type.
-#[derive(Debug)]
+#[cfg_attr(any(feature = "debug", test), derive(Debug))]
 pub enum DecoderState {
     /// State machine has not received any non-zero bytes
     Idle,
@@ -276,7 +276,7 @@ pub fn decode(source: &[u8], dest: &mut[u8]) -> Result<usize, ()> {
 }
 
 /// A report of the source and destination bytes used during in-place decoding
-#[derive(Debug)]
+#[cfg_attr(any(feature = "debug", test), derive(Debug))]
 pub struct DecodeReport {
     // The number of source bytes used, NOT INCLUDING the sentinel byte,
     // if there was one.

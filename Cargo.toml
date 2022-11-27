@@ -13,8 +13,9 @@ keywords = ["consistent", "overhead", "byte", "stuffing"]
 edition = "2018"
 
 [features]
-default = ["use_std"]
+default = ["use_std", "debug"]
 use_std = []
+debug = []
 
 [dev-dependencies]
 quickcheck = "^0.5.0"
